@@ -16,12 +16,16 @@
     box-sizing: border-box;
 }
 
+html, body {
+    overflow-x: hidden; /* IMPEDE O ARRASTO LATERAL */
+    width: 100%;
+}
+
 body {
     background-color: var(--bg-color);
     color: var(--text-primary);
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    overflow-x: hidden; /* Evita rolagem horizontal indesejada no mobile */
 }
 
 /* NAV */
@@ -194,8 +198,10 @@ section {
 }
 
 .sobre-foto img {
-    width: 420px;
-    height: 540px;
+    /* CORREÇÃO DO BUG DE ZOOM/ARRASTO */
+    width: 100%;
+    max-width: 420px; /* Limite máximo para desktop */
+    height: auto;
     object-fit: cover;
     border-radius: 28px;
     border: 2px solid #222;
@@ -326,22 +332,10 @@ section {
 }
 
 /* HOVER COLORIDO */
-.skills-list.ux span:hover {
-    border-color: var(--ux-color);
-    color: var(--ux-color);
-}
-.skills-list.front span:hover {
-    border-color: var(--front-color);
-    color: var(--front-color);
-}
-.skills-list.tools span:hover {
-    border-color: var(--tools-color);
-    color: var(--tools-color);
-}
-.skills-list.general span:hover {
-    border-color: var(--general-color);
-    color: var(--general-color);
-}
+.skills-list.ux span:hover { border-color: var(--ux-color); color: var(--ux-color); }
+.skills-list.front span:hover { border-color: var(--front-color); color: var(--front-color); }
+.skills-list.tools span:hover { border-color: var(--tools-color); color: var(--tools-color); }
+.skills-list.general span:hover { border-color: var(--general-color); color: var(--general-color); }
 
 
 /* CURRÍCULO */
@@ -498,6 +492,7 @@ footer {
 
     nav {
         padding: 1.5rem 5%;
+        justify-content: space-between; /* Garante que o menu fique na ponta */
     }
 
     /* Menu Mobile Ativado */
@@ -507,58 +502,51 @@ footer {
     }
 
     .nav-list {
-        position: absolute;
+        position: fixed; /* Fixa o menu na tela inteira */
         top: 0;
         right: 0;
-        width: 70%; /* Menu ocupa 70% da tela */
+        width: 100%; /* Tela cheia para não sobrar espaço */
         height: 100vh;
-        background: #111;
+        background: #0a0a0a;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 50px;
-        transform: translateX(100%); /* Esconde o menu */
-        transition: transform 0.3s ease-in;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+        transform: translateX(100%); /* Esconde */
+        transition: transform 0.3s ease-in-out;
+        z-index: 999;
     }
 
     .nav-list.active {
-        transform: translateX(0); /* Mostra o menu */
+        transform: translateX(0); /* Mostra */
     }
 
     .nav-list a {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         font-weight: 600;
     }
 
-    /* Efeito X no botão */
-    .mobile-menu.active .line1 {
-        transform: rotate(-45deg) translate(-5px, 6px);
-    }
-    .mobile-menu.active .line2 {
-        opacity: 0;
-    }
-    .mobile-menu.active .line3 {
-        transform: rotate(45deg) translate(-5px, -6px);
-    }
+    /* Animação do botão Hambúrguer */
+    .mobile-menu.active .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
+    .mobile-menu.active .line2 { opacity: 0; }
+    .mobile-menu.active .line3 { transform: rotate(45deg) translate(-5px, -6px); }
 
-    /* Ajustes Gerais de Espaçamento */
+    /* Ajustes Gerais de Espaçamento Mobile */
     section {
-        padding: 80px 5% 0; /* Reduzi o topo de 160px para 80px */
+        padding: 80px 5% 0; /* Margens laterais menores */
     }
 
     #hero {
         padding: 120px 5% 80px;
         text-align: center;
         flex-direction: column;
-        justify-content: center;
     }
 
     h1 {
-        font-size: 2.5rem; /* Fonte menor no mobile */
+        font-size: 2.5rem;
     }
 
-    /* Sobre Mim - Coluna */
+    /* Sobre Mim - Pilha vertical */
     .sobre-container {
         flex-direction: column;
         align-items: center;
@@ -567,9 +555,9 @@ footer {
     }
 
     .sobre-foto img {
+        /* Garante que a foto não estoure a tela */
         width: 100%;
-        max-width: 300px;
-        height: auto;
+        max-width: 320px; 
     }
 
     /* Projetos - 1 Coluna */
@@ -585,6 +573,6 @@ footer {
 
     /* Habilidades */
     .skills-wrapper {
-        grid-template-columns: 1fr; /* Uma coluna de habilidades */
+        grid-template-columns: 1fr;
     }
 }

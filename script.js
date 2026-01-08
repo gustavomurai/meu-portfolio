@@ -8,7 +8,7 @@ window.scrollTo(0, 0);
 
 
 // ===============================
-// MENU MOBILE (NOVO)
+// MENU MOBILE (LÓGICA)
 // ===============================
 const mobileMenu = document.querySelector('.mobile-menu');
 const navList = document.querySelector('.nav-list');
