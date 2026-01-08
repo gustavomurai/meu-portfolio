@@ -61,6 +61,7 @@ nav.nav-hidden {
     display: flex;
     list-style: none;
     gap: 30px;
+    align-items: center; /* Alinha o botão com o texto */
 }
 
 .nav-list a {
@@ -71,6 +72,27 @@ nav.nav-hidden {
 }
 
 .nav-list a:hover {
+    color: var(--text-primary);
+}
+
+/* BOTÃO DE IDIOMA */
+.btn-lang {
+    background: transparent;
+    border: 2px solid #333;
+    color: var(--text-secondary);
+    padding: 6px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase; /* Garante Maiúsculas */
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+.btn-lang:hover {
+    border-color: var(--accent);
     color: var(--text-primary);
 }
 
@@ -90,29 +112,10 @@ nav.nav-hidden {
 
 /* HERO */
 #hero {
-    position: relative; /* Necessário para conter o 3D */
-    padding: 80px 8% 160px;
-    min-height: 70vh; /* Aumentei um pouco para caber a cobra */
+    padding: 140px 8% 160px;
+    min-height: 80vh;
     display: flex;
     align-items: center;
-    overflow: hidden; /* Impede que a cobra saia da área */
-}
-
-/* CONTAINER 3D (NOVO) */
-#canvas-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* Fica atrás do texto */
-    opacity: 0.8; /* Leve transparência para não brigar com o texto */
-}
-
-/* Garante que o texto fique na frente do 3D */
-.hero-content {
-    position: relative;
-    z-index: 2;
 }
 
 h1 {
