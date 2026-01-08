@@ -8,6 +8,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -32,6 +41,8 @@
 
 <main>
     <header id="hero">
+        <div id="canvas-container"></div>
+
         <div class="hero-content">
             <h1>Gustavo Cerqueira Murai</h1>
             <p class="subtitle">UX/UI Designer & Front-End Developer</p>
@@ -202,6 +213,6 @@
     <p>&copy; 2026 Gustavo Murai — Praia Grande, SP.</p>
 </footer>
 
-<script src="script.js"></script>
+<script type="module" src="script.js"></script>
 </body>
 </html>

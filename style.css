@@ -17,7 +17,7 @@
 }
 
 html, body {
-    overflow-x: hidden; /* IMPEDE O ARRASTO LATERAL */
+    overflow-x: hidden;
     width: 100%;
 }
 
@@ -26,6 +26,7 @@ body {
     color: var(--text-primary);
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
+    padding-top: 80px; 
 }
 
 /* NAV */
@@ -33,11 +34,21 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem 8%;
-    position: sticky;
+    padding: 1.5rem 8%;
+    position: fixed;
+    width: 100%;
     top: 0;
-    background: rgba(10, 10, 10, 0.95);
+    left: 0;
+    background: rgba(10, 10, 10, 0.98);
     z-index: 1000;
+    transition: transform 0.4s ease-in-out;
+    box-shadow: none;
+    border: none;
+}
+
+/* Classe para esconder o menu */
+nav.nav-hidden {
+    transform: translateY(-100%);
 }
 
 .logo {
@@ -63,7 +74,7 @@ nav {
     color: var(--text-primary);
 }
 
-/* MENU MOBILE (Hambúrguer) */
+/* MENU MOBILE */
 .mobile-menu {
     display: none;
     cursor: pointer;
@@ -79,10 +90,29 @@ nav {
 
 /* HERO */
 #hero {
-    padding: 140px 8% 160px;
-    min-height: 60vh;
+    position: relative; /* Necessário para conter o 3D */
+    padding: 80px 8% 160px;
+    min-height: 70vh; /* Aumentei um pouco para caber a cobra */
     display: flex;
     align-items: center;
+    overflow: hidden; /* Impede que a cobra saia da área */
+}
+
+/* CONTAINER 3D (NOVO) */
+#canvas-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Fica atrás do texto */
+    opacity: 0.8; /* Leve transparência para não brigar com o texto */
+}
+
+/* Garante que o texto fique na frente do 3D */
+.hero-content {
+    position: relative;
+    z-index: 2;
 }
 
 h1 {
@@ -98,7 +128,6 @@ h1 {
     margin-bottom: 30px;
 }
 
-/* BOTÕES HERO */
 .btn-hero {
     display: inline-block;
     padding: 10px 25px;
@@ -120,10 +149,9 @@ h1 {
 
 /* SEÇÕES */
 section {
-    padding: 160px 8% 0;
+    padding: 100px 8% 0;
 }
 
-/* TÍTULOS DAS SEÇÕES */
 .section-title {
     display: inline-block;
     margin-bottom: 60px;
@@ -134,7 +162,7 @@ section {
     border-radius: 999px;
 }
 
-/* CABEÇALHO PROJETOS E FILTROS */
+/* PROJETOS */
 .projetos-header {
     display: flex;
     justify-content: space-between;
@@ -148,7 +176,6 @@ section {
     margin-bottom: 0;
 }
 
-/* BOTÕES DE FILTRO */
 .filter-buttons {
     display: flex;
     gap: 15px;
@@ -198,9 +225,8 @@ section {
 }
 
 .sobre-foto img {
-    /* CORREÇÃO DO BUG DE ZOOM/ARRASTO */
     width: 100%;
-    max-width: 420px; /* Limite máximo para desktop */
+    max-width: 420px;
     height: auto;
     object-fit: cover;
     border-radius: 28px;
@@ -213,14 +239,13 @@ section {
     border-color: var(--accent);
 }
 
-/* GRID PROJETOS (4 colunas) */
+/* GRID */
 .grid-projetos {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 32px;
 }
 
-/* Card */
 .card {
     background-color: #1f1f1f;
     border-radius: 20px;
@@ -272,15 +297,8 @@ section {
     transform: translateZ(0); 
 }
 
-.project-tag.ux {
-    border-color: var(--ux-color);
-    color: var(--ux-color);
-}
-
-.project-tag.front {
-    border-color: var(--front-color);
-    color: var(--front-color);
-}
+.project-tag.ux { border-color: var(--ux-color); color: var(--ux-color); }
+.project-tag.front { border-color: var(--front-color); color: var(--front-color); }
 
 .card-info p {
     font-size: 0.95rem;
@@ -293,7 +311,7 @@ section {
     color: inherit;
 }
 
-/* HABILIDADES CATEGORIZADAS */
+/* HABILIDADES */
 .skills-wrapper {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -308,7 +326,6 @@ section {
     padding-bottom: 10px;
 }
 
-/* Cores dos títulos */
 .skill-title.ux { color: var(--ux-color); }
 .skill-title.front { color: var(--front-color); }
 .skill-title.tools { color: var(--tools-color); }
@@ -331,12 +348,10 @@ section {
     cursor: default;
 }
 
-/* HOVER COLORIDO */
 .skills-list.ux span:hover { border-color: var(--ux-color); color: var(--ux-color); }
 .skills-list.front span:hover { border-color: var(--front-color); color: var(--front-color); }
 .skills-list.tools span:hover { border-color: var(--tools-color); color: var(--tools-color); }
 .skills-list.general span:hover { border-color: var(--general-color); color: var(--general-color); }
-
 
 /* CURRÍCULO */
 #curriculo {
@@ -386,23 +401,9 @@ section {
     border-radius: 50%;
 }
 
-.info-cv {
-    text-align: left;
-}
-
-.info-cv h3 {
-    font-size: 1rem;
-    color: var(--text-primary);
-    margin-bottom: 4px;
-}
-
-.info-cv span {
-    font-size: 0.85rem;
-    color: var(--accent);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
+.info-cv { text-align: left; }
+.info-cv h3 { font-size: 1rem; color: var(--text-primary); margin-bottom: 4px; }
+.info-cv span { font-size: 0.85rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
 
 /* CONTATO */
 #contato {
@@ -431,10 +432,7 @@ section {
     cursor: text;
 }
 
-.email-destaque:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-}
+.email-destaque:hover { border-color: var(--accent); color: var(--accent); }
 
 .contato-links {
     display: flex;
@@ -470,109 +468,29 @@ footer {
     font-size: 0.85rem;
 }
 
-/* --- ANIMAÇÃO DE SCROLL --- */
-.js-scroll {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
+/* ANIMATION */
+.js-scroll { opacity: 0; transform: translateY(40px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.js-scroll-visible { opacity: 1; transform: translateY(0); }
 
-.js-scroll-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ========================================= */
-/* RESPONSIVO (MOBILE / MODO RETRATO) */
-/* ========================================= */
+/* RESPONSIVO */
 @media (max-width: 992px) {
-    body {
-        overflow-x: hidden;
-    }
-
-    nav {
-        padding: 1.5rem 5%;
-        justify-content: space-between; /* Garante que o menu fique na ponta */
-    }
-
-    /* Menu Mobile Ativado */
-    .mobile-menu {
-        display: block;
-        z-index: 1001;
-    }
-
+    nav { padding: 1.5rem 5%; justify-content: space-between; }
+    .mobile-menu { display: block; z-index: 1001; }
     .nav-list {
-        position: fixed; /* Fixa o menu na tela inteira */
-        top: 0;
-        right: 0;
-        width: 100%; /* Tela cheia para não sobrar espaço */
-        height: 100vh;
-        background: #0a0a0a;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 50px;
-        transform: translateX(100%); /* Esconde */
-        transition: transform 0.3s ease-in-out;
-        z-index: 999;
+        position: fixed; top: 0; right: 0; width: 100%; height: 100vh;
+        background: #0a0a0a; flex-direction: column; align-items: center; justify-content: center; gap: 50px;
+        transform: translateX(100%); transition: transform 0.3s ease-in-out; z-index: 999;
     }
-
-    .nav-list.active {
-        transform: translateX(0); /* Mostra */
-    }
-
-    .nav-list a {
-        font-size: 1.5rem;
-        font-weight: 600;
-    }
-
-    /* Animação do botão Hambúrguer */
+    .nav-list.active { transform: translateX(0); }
+    .nav-list a { font-size: 1.5rem; font-weight: 600; }
     .mobile-menu.active .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
     .mobile-menu.active .line2 { opacity: 0; }
     .mobile-menu.active .line3 { transform: rotate(45deg) translate(-5px, -6px); }
-
-    /* Ajustes Gerais de Espaçamento Mobile */
-    section {
-        padding: 80px 5% 0; /* Margens laterais menores */
-    }
-
-    #hero {
-        padding: 120px 5% 80px;
-        text-align: center;
-        flex-direction: column;
-    }
-
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    /* Sobre Mim - Pilha vertical */
-    .sobre-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 40px;
-        text-align: center;
-    }
-
-    .sobre-foto img {
-        /* Garante que a foto não estoure a tela */
-        width: 100%;
-        max-width: 320px; 
-    }
-
-    /* Projetos - 1 Coluna */
-    .grid-projetos {
-        grid-template-columns: 1fr;
-    }
-
-    .projetos-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-    }
-
-    /* Habilidades */
-    .skills-wrapper {
-        grid-template-columns: 1fr;
-    }
+    section { padding: 80px 5% 0; }
+    #hero { padding: 60px 5% 80px; text-align: center; flex-direction: column; }
+    h1 { font-size: 2.5rem; }
+    .sobre-container { flex-direction: column; align-items: center; gap: 40px; text-align: center; }
+    .grid-projetos { grid-template-columns: 1fr; }
+    .projetos-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .skills-wrapper { grid-template-columns: 1fr; }
 }
