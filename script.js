@@ -1,16 +1,37 @@
 // ===============================
-// FORÇAR TOPO AO RECARREGAR (NOVO)
+// FORÇAR TOPO AO RECARREGAR
 // ===============================
-// Isso impede que o navegador lembre onde você estava na rolagem
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
-// Garante que vá para o topo assim que o script carregar
 window.scrollTo(0, 0);
 
 
 // ===============================
-// SCROLL SUAVE (MENU)
+// MENU MOBILE (NOVO)
+// ===============================
+const mobileMenu = document.querySelector('.mobile-menu');
+const navList = document.querySelector('.nav-list');
+const navLinksAll = document.querySelectorAll('.nav-list a');
+
+if (mobileMenu) {
+    mobileMenu.addEventListener('click', () => {
+        navList.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+    });
+
+    // Fechar menu ao clicar em um link
+    navLinksAll.forEach(link => {
+        link.addEventListener('click', () => {
+            navList.classList.remove('active');
+            mobileMenu.classList.remove('active');
+        });
+    });
+}
+
+
+// ===============================
+// SCROLL SUAVE
 // ===============================
 const navLinks = document.querySelectorAll('nav a[href^="#"]');
 
@@ -32,7 +53,6 @@ function smoothScroll(target, duration = 800) {
         const timeElapsed = currentTime - startTime;
         const progress = Math.min(timeElapsed / duration, 1);
 
-        // easing: easeInOutCubic
         const ease =
             progress < 0.5
                 ? 4 * progress * progress * progress
@@ -136,7 +156,7 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 const elementsToAnimate = document.querySelectorAll(
-    '.hero-content, .section-title, .sobre-container, .card, .skills-container, .curriculo-container, #contato > *'
+    '.hero-content, .section-title, .sobre-container, .card, .skill-category, .curriculo-container, #contato > *'
 );
 
 elementsToAnimate.forEach(el => {

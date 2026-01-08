@@ -4,6 +4,10 @@
     --text-primary: #ffffff;
     --text-secondary: #b0b0b0;
     --accent: #818cf8;
+    --ux-color: #f63c9c;
+    --front-color: #3b82f6;
+    --tools-color: #22c55e;
+    --general-color: #f97316;
 }
 
 * {
@@ -17,6 +21,7 @@ body {
     color: var(--text-primary);
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
+    overflow-x: hidden; /* Evita rolagem horizontal indesejada no mobile */
 }
 
 /* NAV */
@@ -37,21 +42,35 @@ nav {
     letter-spacing: -1px;
 }
 
-nav ul {
+.nav-list {
     display: flex;
     list-style: none;
     gap: 30px;
 }
 
-nav a {
+.nav-list a {
     color: var(--text-secondary);
     text-decoration: none;
     font-size: 0.9rem;
     transition: color 0.3s;
 }
 
-nav a:hover {
+.nav-list a:hover {
     color: var(--text-primary);
+}
+
+/* MENU MOBILE (Hambúrguer) */
+.mobile-menu {
+    display: none;
+    cursor: pointer;
+}
+
+.mobile-menu div {
+    width: 28px;
+    height: 3px;
+    background: #fff;
+    margin: 6px;
+    transition: 0.3s;
 }
 
 /* HERO */
@@ -146,15 +165,15 @@ section {
 
 .filter-btn[data-filter="ux"]:hover,
 .filter-btn[data-filter="ux"].active {
-    border-color: #f63c9c;
-    color: #f63c9c;
+    border-color: var(--ux-color);
+    color: var(--ux-color);
     box-shadow: 0 0 10px rgba(246, 60, 156, 0.2);
 }
 
 .filter-btn[data-filter="front"]:hover,
 .filter-btn[data-filter="front"].active {
-    border-color: #3b82f6;
-    color: #3b82f6;
+    border-color: var(--front-color);
+    color: var(--front-color);
     box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
 }
 
@@ -248,13 +267,13 @@ section {
 }
 
 .project-tag.ux {
-    border-color: #f63c9c;
-    color: #f63c9c;
+    border-color: var(--ux-color);
+    color: var(--ux-color);
 }
 
 .project-tag.front {
-    border-color: #3b82f6;
-    color: #3b82f6;
+    border-color: var(--front-color);
+    color: var(--front-color);
 }
 
 .card-info p {
@@ -268,22 +287,62 @@ section {
     color: inherit;
 }
 
-/* HABILIDADES */
-.skills-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
+/* HABILIDADES CATEGORIZADAS */
+.skills-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
     padding-bottom: 160px;
 }
 
-.skills-container span {
+.skill-title {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #222;
+    padding-bottom: 10px;
+}
+
+/* Cores dos títulos */
+.skill-title.ux { color: var(--ux-color); }
+.skill-title.front { color: var(--front-color); }
+.skill-title.tools { color: var(--tools-color); }
+.skill-title.general { color: var(--general-color); }
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.skills-list span {
     padding: 10px 22px;
     background: #1a1a1a;
     border-radius: 50px;
     font-size: 0.85rem;
     color: var(--text-secondary);
-    border: 1px solid #333;
+    border: 2px solid #333;
+    transition: all 0.3s ease;
+    cursor: default;
 }
+
+/* HOVER COLORIDO */
+.skills-list.ux span:hover {
+    border-color: var(--ux-color);
+    color: var(--ux-color);
+}
+.skills-list.front span:hover {
+    border-color: var(--front-color);
+    color: var(--front-color);
+}
+.skills-list.tools span:hover {
+    border-color: var(--tools-color);
+    color: var(--tools-color);
+}
+.skills-list.general span:hover {
+    border-color: var(--general-color);
+    color: var(--general-color);
+}
+
 
 /* CURRÍCULO */
 #curriculo {
@@ -417,7 +476,7 @@ footer {
     font-size: 0.85rem;
 }
 
-/* --- ANIMAÇÃO DE SCROLL (NOVO) --- */
+/* --- ANIMAÇÃO DE SCROLL --- */
 .js-scroll {
     opacity: 0;
     transform: translateY(40px);
@@ -429,29 +488,103 @@ footer {
     transform: translateY(0);
 }
 
-/* RESPONSIVO */
-@media (max-width: 1200px) {
-    .grid-projetos {
-        grid-template-columns: repeat(2, 1fr);
+/* ========================================= */
+/* RESPONSIVO (MOBILE / MODO RETRATO) */
+/* ========================================= */
+@media (max-width: 992px) {
+    body {
+        overflow-x: hidden;
     }
-}
 
-@media (max-width: 768px) {
+    nav {
+        padding: 1.5rem 5%;
+    }
+
+    /* Menu Mobile Ativado */
+    .mobile-menu {
+        display: block;
+        z-index: 1001;
+    }
+
+    .nav-list {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 70%; /* Menu ocupa 70% da tela */
+        height: 100vh;
+        background: #111;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+        transform: translateX(100%); /* Esconde o menu */
+        transition: transform 0.3s ease-in;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+    }
+
+    .nav-list.active {
+        transform: translateX(0); /* Mostra o menu */
+    }
+
+    .nav-list a {
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    /* Efeito X no botão */
+    .mobile-menu.active .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .mobile-menu.active .line2 {
+        opacity: 0;
+    }
+    .mobile-menu.active .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    /* Ajustes Gerais de Espaçamento */
+    section {
+        padding: 80px 5% 0; /* Reduzi o topo de 160px para 80px */
+    }
+
+    #hero {
+        padding: 120px 5% 80px;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    h1 {
+        font-size: 2.5rem; /* Fonte menor no mobile */
+    }
+
+    /* Sobre Mim - Coluna */
     .sobre-container {
         flex-direction: column;
+        align-items: center;
+        gap: 40px;
         text-align: center;
     }
+
     .sobre-foto img {
-        width: 240px;
-        height: 300px;
-        margin: 0 auto;
+        width: 100%;
+        max-width: 300px;
+        height: auto;
     }
+
+    /* Projetos - 1 Coluna */
     .grid-projetos {
         grid-template-columns: 1fr;
     }
+
     .projetos-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 30px;
+        gap: 20px;
+    }
+
+    /* Habilidades */
+    .skills-wrapper {
+        grid-template-columns: 1fr; /* Uma coluna de habilidades */
     }
 }
