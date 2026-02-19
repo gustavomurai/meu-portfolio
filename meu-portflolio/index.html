@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gustavo Murai | UX/UI & Front-End</title>
+  
+  <link rel="stylesheet" href="style.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav aria-label="Navegação principal">
+    <div class="logo">Gustavo Murai</div>
+    
+    <div class="mobile-menu">
+      <div class="line1"></div>
+      <div class="line2"></div>
+      <div class="line3"></div>
+    </div>
+
+    <ul class="nav-list">
+      <li><a href="#hero" data-i18n="nav_home">Home</a></li>
+      <li><a href="#sobre" data-i18n="nav_about">Sobre</a></li>
+      <li><a href="#projetos" data-i18n="nav_projects">Projetos</a></li>
+      <li><a href="#habilidades" data-i18n="nav_skills">Habilidades</a></li>
+      <li><a href="#curriculo" data-i18n="nav_resume">Currículo</a></li>
+      <li><a href="#contato" class="btn-contato" data-i18n="nav_contact">Contato</a></li>
+      <li><button id="language-toggle" class="btn-lang">PT-BR</button></li>
+    </ul>
+  </nav>
+
+  <main>
+    <header id="hero">
+      <div class="hero-content">
+        <h1>Gustavo Cerqueira Murai</h1>
+        <p class="subtitle" data-i18n="hero_subtitle">UX/UI Designer & Front-End Developer</p>
+        
+        <div class="hero-links">
+          <a href="https://github.com/gustavomurai" target="_blank" rel="noopener noreferrer" class="btn-hero">GitHub</a>
+          <a href="https://www.behance.net/gustavomurai" target="_blank" rel="noopener noreferrer" class="btn-hero">Behance</a>
+        </div>
+      </div>
+    </header>
+
+    <section id="sobre">
+      <div class="sobre-container">
+        <div class="sobre-texto">
+          <h2 class="section-title" data-i18n="about_title">Sobre Mim</h2>
+          
+          <p data-i18n="about_text_1">
+            Sou um <strong>Desenvolvedor Front-End e UX/UI Designer</strong> que atua na ponte entre a criatividade e a engenharia. Não apenas desenho interfaces no Figma, mas as transformo em código funcional, performático e acessível.
+          </p>
+          
+          <p data-i18n="about_text_2">
+            Graduando em Análise e Desenvolvimento de Sistemas pelo <strong>IFSP</strong> e com formação em UX Design pela <strong>Alura</strong>, possuo sólida base técnica em <strong>HTML, CSS, JavaScript, Angular e Node.js</strong>, aliada a metodologias ágeis como Scrum e Kanban.
+          </p>
+          
+          <p data-i18n="about_text_3">
+            Meu foco é transformar problemas complexos em soluções digitais intuitivas, aplicando Design Thinking e UCD (Design Centrado no Usuário) para entregar produtos que geram impacto real.
+          </p>
+        </div>
+
+        <div class="sobre-foto">
+          <img src="images/perfil.jpeg" alt="Foto de perfil de Gustavo Murai">
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos">
+      <div class="projetos-header">
+        <h2 class="section-title" data-i18n="projects_title">Projetos</h2>
+        <div class="filter-buttons">
+          <button class="filter-btn" data-filter="ux">UX/UI</button>
+          <button class="filter-btn" data-filter="front">Front-end</button>
+        </div>
+      </div>
+
+      <div class="grid-projetos">
+        <article class="card" data-category="ux" data-link="https://www.behance.net/gallery/220600085/Gusto-UXUI-de-App-Mobile-para-Cafeteria">
+          <img src="images/gusto-thumbnail.png" alt="Projeto Gusto Cafeteria">
+          <div class="card-info">
+            <h3>Gusto – App de Cafeteria <span class="project-tag ux">UX/UI</span></h3>
+            <p data-i18n="project_gusto">Design System completo com componentes reutilizáveis e foco em usabilidade.</p>
+          </div>
+        </article>
+
+        <article class="card" data-category="ux" data-link="https://www.behance.net/gallery/235451487/Doativa-UXUI-de-App-Mobile-para-Doacao">
+          <img src="images/doativa-thumbnail.png" alt="Projeto Doativa">
+          <div class="card-info">
+            <h3>Doativa - App de Doação <span class="project-tag ux">UX/UI</span></h3>
+            <p data-i18n="project_doativa">Projeto de UX/UI voltado à inclusão social e arquitetura da informação.</p>
+          </div>
+        </article>
+        
+        <article class="card" data-category="ux" data-link="https://www.behance.net/gallery/220630751/Gusto-UXUI-de-App-Mobile-para-game-infantil">
+          <img src="images/gusto-game-thumbnail.png" alt="Projeto Color Fruit">
+          <div class="card-info">
+            <h3>Color Fruit - Game infantil<span class="project-tag ux">UX/UI</span></h3>
+            <p data-i18n="project_colorfruit">App mobile com interface lúdica e gamificada, focado na experiência do usuário infantil.</p>
+          </div>
+        </article>
+
+        <article class="card" data-category="front" data-link="https://github.com/gustavomurai/Aplicativo-Clima">
+          <img src="images/clima-thumbnail.png" alt="Dashboard de Clima">
+          <div class="card-info">
+            <h3>Dashboard de Clima <span class="project-tag front">Front-end</span></h3>
+            <p data-i18n="project_weather">Interface responsiva com integração de APIs e dados em tempo real.</p>
+          </div>
+        </article>
+
+        <article class="card" data-category="front" data-link="https://github.com/gustavomurai/crud-tarefas-react">
+          <img src="images/taskflow-thumbnail.png" alt="Gestão de tarefas com React">
+          <div class="card-info">
+            <h3>Gestão de tarefas com React <span class="project-tag front">Front-end</span></h3>
+            <p data-i18n="project_weather">CRUD de tarefas desenvolvido em React.</p>
+          </div>
+        </article>
+
+        <article class="card" data-category="front" data-link="https://github.com/gustavomurai/gestao-tarefas-oficial">
+          <img src="images/gestao-tarefas-thumbnail.png" alt="Gestão de Tarefas Online">
+          <div class="card-info">
+            <h3>Gestão de Tarefas Online <span class="project-tag front">Front-end</span></h3>
+            <p data-i18n="project_tasks">CRUD para gestão de tarefas, desenvolvido com Angular no front-end e Node.js no back-end.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="habilidades">
+      <h2 class="section-title" data-i18n="skills_title">Habilidades Técnicas</h2>
+      
+      <div class="skills-wrapper">
+        <div class="skill-category">
+          <h3 class="skill-title ux">UX/UI Design</h3>
+          <div class="skills-list ux">
+            <span>Figma</span>
+            <span>UX Research</span>
+            <span>Design Thinking</span>
+            <span>Wireframing</span>
+            <span>Prototipagem</span>
+            <span>Design System</span>
+            <span>Atomic Design</span>
+            <span>User Flows</span>
+            <span data-i18n="skill_usability">Usabilidade</span>
+            <span data-i18n="skill_accessibility">Acessibilidade (WCAG)</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3 class="skill-title front">Front-End</h3>
+          <div class="skills-list front">
+            <span>HTML5</span>
+            <span>CSS3</span>
+            <span>JavaScript</span>
+            <span>TypeScript</span>
+            <span>Angular</span>
+            <span>React</span>
+            <span data-i18n="skill_responsive">Responsividade</span>
+            <span>Flexbox</span>
+            <span>CSS Grid</span>
+            <span data-i18n="skill_animations">Animações CSS</span>
+            <span>APIs REST</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3 class="skill-title tools" data-i18n="tools_title">Ferramentas & Dados</h3>
+          <div class="skills-list tools">
+            <span>Git</span>
+            <span>GitHub</span>
+            <span>Node.js</span>
+            <span>SQL Server</span>
+            <span>Power BI</span>
+            <span>VS Code</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3 class="skill-title general">Soft Skills</h3>
+          <div class="skills-list general">
+            <span data-i18n="soft_agile">Metodologias Ágeis (Scrum)</span>
+            <span data-i18n="soft_teamwork">Trabalho em Equipe</span>
+            <span data-i18n="soft_communication">Comunicação</span>
+            <span data-i18n="soft_problem">Resolução de Problemas</span>
+            <span data-i18n="soft_english">Inglês Avançado</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="curriculo">
+      <h2 class="section-title" data-i18n="resume_title">Currículo</h2>
+      <p class="curriculo-texto" data-i18n="resume_text">Baixe meu currículo em PDF focado na área de seu interesse:</p>
+      
+      <div class="curriculo-container">
+        <a href="documents/curriculo-uxui-gustavomurai.pdf" download class="card-curriculo">
+          <div class="icon-cv">🎨</div>
+          <div class="info-cv">
+            <h3>UX/UI Designer</h3>
+            <span data-i18n="btn_download">Baixar PDF</span>
+          </div>
+        </a>
+        
+        <a href="documents/curriculo-front-end-gustavomurai.pdf" download class="card-curriculo">
+          <div class="icon-cv">💻</div>
+          <div class="info-cv">
+            <h3>Front-End Dev</h3>
+            <span data-i18n="btn_download">Baixar PDF</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section id="contato">
+      <h2 class="section-title" data-i18n="contact_title">Contato</h2>
+      <p class="contato-texto" data-i18n="contact_text">Estou disponível para novos projetos e oportunidades. <br> Sinta-se à vontade para me mandar um "oi" ou discutir uma ideia.</p>
+      
+      <div class="email-destaque">muraigustavo@gmail.com</div>
+      
+      <div class="contato-links">
+        <a href="https://www.linkedin.com/in/gustavomurai/" target="_blank" rel="noopener noreferrer" class="btn-social">LinkedIn</a>
+        <a href="https://github.com/gustavomurai" target="_blank" rel="noopener noreferrer" class="btn-social">GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Gustavo Murai — Praia Grande, SP.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
