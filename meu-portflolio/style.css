@@ -6,6 +6,7 @@
   --accent: #818cf8;
   --ux-color: #f63c9c;
   --front-color: #3b82f6;
+  --desktop-color: #e69b19;
   --tools-color: #22c55e;
   --general-color: #f97316;
 }
@@ -211,6 +212,13 @@ section {
   box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
 }
 
+.filter-btn[data-filter="desktop"]:hover,
+.filter-btn[data-filter="desktop"].active {
+  border-color: var(--desktop-color);
+  color: var(--desktop-color);
+  box-shadow: 0 0 10px rgba(167, 139, 250, 0.2);
+}
+
 /* --- Sobre Mim --- */
 .sobre-container {
   display: flex;
@@ -302,6 +310,7 @@ section {
 
 .project-tag.ux { border-color: var(--ux-color); color: var(--ux-color); }
 .project-tag.front { border-color: var(--front-color); color: var(--front-color); }
+.project-tag.desktop { border-color: var(--desktop-color); color: var(--desktop-color); }
 
 .card-info p {
   font-size: 0.95rem;
@@ -537,10 +546,28 @@ footer {
   }
 
   #hero {
-    padding: 60px 5% 80px;
-    text-align: center;
-    flex-direction: column;
+  padding: 110px 5% 60px; /* mais organizado e sem vazio */
+  min-height: auto;       /* remove o "80vh" no mobile */
+  align-items: flex-start; /* para de centralizar verticalmente */
+  justify-content: flex-start;
+  text-align: center;
+  flex-direction: column;
   }
+  .hero-content {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  }
+
+  h1 {
+  line-height: 1.15;
+  margin-bottom: 12px;
+  }
+
+  .subtitle {
+  margin-bottom: 22px;
+  }
+
 
   h1 {
     font-size: 2.5rem;
